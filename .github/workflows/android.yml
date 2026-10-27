@@ -154,7 +154,7 @@ jobs:
           profile: ${{ matrix.profile }}
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-boot-anim -camera-back none -camera-front none
-          script: ./gradlew :app:connectedDebugAndroidTest -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true --stacktrace; S=$?; mkdir -p capturas; adb pull /sdcard/Android/data/com.afinador.acustico/files/capturas capturas/ || true; exit $S
+          script: ./gradlew :app:connectedDebugAndroidTest -Pandroid.injected.androidTest.leaveApksInstalledAfterRun=true --stacktrace; S=$?; mkdir -p capturas; adb pull /sdcard/Android/data/com.afinador.acustico/files/capturas capturas/ || true; mkdir -p app/build/reports/androidTests; adb logcat -d -v time > app/build/reports/androidTests/logcat.txt || true; exit $S
 
       - name: Guardar informes
         if: always()
