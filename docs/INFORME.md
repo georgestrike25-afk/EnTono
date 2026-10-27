@@ -4,6 +4,8 @@ Todo lo que figura acá se ejecutó de verdad, en este entorno o en GitHub Actio
 
 ## Entregable
 
+> La versión 1.0.9 se compiló cuando el proyecto todavía vivía dentro de otro repositorio; desde entonces EnTono tiene su propio repositorio y las nuevas versiones se publican en https://github.com/georgestrike25-afk/entono/releases.
+
 | | |
 |---|---|
 | APK de lanzamiento | `EnTono-1.0.9.apk` (1.402.614 bytes) |
@@ -13,7 +15,7 @@ Todo lo que figura acá se ejecutó de verdad, en este entorno o en GitHub Actio
 | Paquete | `com.afinador.acustico` (nombre visible «EnTono»), versionCode 9, minSdk 26 (Android 8.0), targetSdk 35 |
 | Firma | APK Signature Scheme v2, verificada con `apksigner verify` (1 firmante). Clave generada en la compilación (ver «Limitaciones»). |
 | Permisos | Sólo `RECORD_AUDIO`. Ni Internet ni ningún otro (lo comprueba el CI y falla si aparece `INTERNET`). |
-| Código fuente | rama `ccr-f6019910-wn0a74`, carpeta `afinador-acustico/` |
+| Código fuente | https://github.com/georgestrike25-afk/entono |
 
 También se publica una variante `-debug.apk` como versión de prueba. Para usar la app, instalá la de lanzamiento.
 
@@ -31,7 +33,7 @@ Verificación de la descarga hecha en este entorno: el SHA-256 coincide con `SHA
 
 - Este contenedor tiene Linux x86_64, JDK 21 y Gradle 8.14.3, pero **no tiene Android SDK**. La política de red bloquea `dl.google.com`, que es de donde se descargan el SDK y las bibliotecas AndroidX.
 - Por eso, en este contenedor se compiló y probó el motor `:core` (Kotlin puro).
-- La app Android se compila y prueba en GitHub Actions (`ubuntu-latest`, JDK 17, Android SDK del runner), con el workflow `.github/workflows/afinador-android.yml`.
+- La app Android se compila y prueba en GitHub Actions (`ubuntu-latest`, JDK 17, Android SDK del runner), con el workflow `.github/workflows/android.yml`.
 
 ## Resultados
 

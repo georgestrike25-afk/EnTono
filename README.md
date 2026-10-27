@@ -6,7 +6,7 @@ sin conexión, no tiene publicidad ni cuentas y no pide permiso de Internet.
 ## Instalación en el celular
 
 1. En el teléfono, abrí **Releases** del repositorio
-   (`https://github.com/georgestrike25-afk/App-pc-finazas/releases`) y entrá a la más reciente
+   (`https://github.com/georgestrike25-afk/entono/releases`) y entrá a la más reciente
    **EnTono 1.0.N**.
 2. Descargá `EnTono-1.0.N.apk` (no el `-debug`).
 3. Abrí el archivo descargado. Si Android lo pide, permití **Instalar apps desconocidas** para el
@@ -64,7 +64,7 @@ de 24–96 px, monocromo y logotipo completo con texto).
 ## Arquitectura
 
 ```
-afinador-acustico/
+entono/
 ├── core/   Kotlin puro (sin Android): toda la lógica de audio y música, probada en la JVM
 │   ├── NoteMath.kt        escala temperada, cents, nombres de notas, límites de A4 y transposición
 │   ├── Tuning.kt          afinaciones y objetivos por cuerda
@@ -89,13 +89,12 @@ El micrófono sólo está abierto en Afinador/Cromático (o al calibrar) con la 
 ## Compilar
 
 ```bash
-cd afinador-acustico
 ./gradlew :core:test                      # pruebas del motor (no requiere Android SDK)
 ./gradlew :app:assembleRelease            # requiere Android SDK (ANDROID_HOME)
 ./gradlew :app:connectedDebugAndroidTest  # pruebas de interfaz con emulador o teléfono
 ```
 
-El workflow `.github/workflows/afinador-android.yml` hace todo esto en GitHub Actions y publica el
+El workflow `.github/workflows/android.yml` hace todo esto en GitHub Actions y publica el
 APK como Release.
 
 ## Firma
