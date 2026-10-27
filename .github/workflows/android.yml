@@ -19,7 +19,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  AFINADOR_VERSION_CODE: ${{ github.run_number }}
+  # La numeración continúa la del repositorio anterior (llegó a 1.0.9): versión = ejecución + 10.
+  VERSION_OFFSET: 10
 
 jobs:
   build:
@@ -28,6 +29,9 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+
+      - name: Calcular versión
+        run: echo "AFINADOR_VERSION_CODE=$((GITHUB_RUN_NUMBER + VERSION_OFFSET))" >> "$GITHUB_ENV"
 
       - uses: actions/setup-java@v4
         with:
@@ -122,6 +126,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Calcular versión
+        run: echo "AFINADOR_VERSION_CODE=$((GITHUB_RUN_NUMBER + VERSION_OFFSET))" >> "$GITHUB_ENV"
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -193,6 +200,9 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
+      - name: Calcular versión
+        run: echo "AFINADOR_VERSION_CODE=$((GITHUB_RUN_NUMBER + VERSION_OFFSET))" >> "$GITHUB_ENV"
+
       - uses: actions/download-artifact@v4
         with:
           name: apk
@@ -207,14 +217,14 @@ jobs:
       - name: Crear release con el APK
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: entono-v1.0.${{ github.run_number }}
+          tag_name: entono-v1.0.${{ env.AFINADOR_VERSION_CODE }}
           target_commitish: ${{ github.sha }}
-          name: EnTono 1.0.${{ github.run_number }}
+          name: EnTono 1.0.${{ env.AFINADOR_VERSION_CODE }}
           prerelease: true
           body: |
             APK de **EnTono** (afinador de guitarra) compilada automáticamente desde `${{ github.sha }}` (rama `${{ github.ref_name }}`).
 
-            - `EnTono-1.0.${{ github.run_number }}.apk`: versión de lanzamiento optimizada y firmada. **Instalá esta.**
+            - `EnTono-1.0.${{ env.AFINADOR_VERSION_CODE }}.apk`: versión de lanzamiento optimizada y firmada. **Instalá esta.**
             - `…-debug.apk`: versión de prueba con depuración habilitada.
             - `SHA256SUMS.txt`: sumas de verificación.
             - `capturas-api*.zip`: capturas de pantalla tomadas en el emulador durante las pruebas.

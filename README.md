@@ -6,7 +6,7 @@ sin conexión, no tiene publicidad ni cuentas y no pide permiso de Internet.
 ## Instalación en el celular
 
 1. En el teléfono, abrí **Releases** del repositorio
-   (`https://github.com/georgestrike25-afk/entono/releases`) y entrá a la más reciente
+   (`https://github.com/georgestrike25-afk/EnTono/releases`) y entrá a la más reciente
    **EnTono 1.0.N**.
 2. Descargá `EnTono-1.0.N.apk` (no el `-debug`).
 3. Abrí el archivo descargado. Si Android lo pide, permití **Instalar apps desconocidas** para el

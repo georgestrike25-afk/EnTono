@@ -4,7 +4,7 @@ Todo lo que figura acá se ejecutó de verdad, en este entorno o en GitHub Actio
 
 ## Entregable
 
-> La versión 1.0.9 se compiló cuando el proyecto todavía vivía dentro de otro repositorio; desde entonces EnTono tiene su propio repositorio y las nuevas versiones se publican en https://github.com/georgestrike25-afk/entono/releases.
+> La versión 1.0.9 se compiló cuando el proyecto todavía vivía dentro de otro repositorio; desde entonces EnTono tiene su propio repositorio y las nuevas versiones se publican en https://github.com/georgestrike25-afk/EnTono/releases.
 
 | | |
 |---|---|
@@ -15,7 +15,7 @@ Todo lo que figura acá se ejecutó de verdad, en este entorno o en GitHub Actio
 | Paquete | `com.afinador.acustico` (nombre visible «EnTono»), versionCode 9, minSdk 26 (Android 8.0), targetSdk 35 |
 | Firma | APK Signature Scheme v2, verificada con `apksigner verify` (1 firmante). Clave generada en la compilación (ver «Limitaciones»). |
 | Permisos | Sólo `RECORD_AUDIO`. Ni Internet ni ningún otro (lo comprueba el CI y falla si aparece `INTERNET`). |
-| Código fuente | https://github.com/georgestrike25-afk/entono |
+| Código fuente | https://github.com/georgestrike25-afk/EnTono |
 
 También se publica una variante `-debug.apk` como versión de prueba. Para usar la app, instalá la de lanzamiento.
 
