@@ -70,6 +70,7 @@ private class HeadstockGeometry(val width: Float, val height: Float, sideReserve
 
     /** Semiancho del clavijero a la altura y (estrechándose hacia la cejuela). */
     fun halfWidthAt(y: Float): Float {
+        if (headHeight <= 0f) return halfTop
         val t = ((y - top) / headHeight).coerceIn(0f, 1f)
         val curve = if (t < 0.78f) 1f - 0.08f * (t / 0.78f) else 0.92f - (0.92f - halfNut / halfTop) * ((t - 0.78f) / 0.22f).pow(0.8f)
         return halfTop * curve
@@ -131,6 +132,9 @@ fun GuitarHeadstock(
     val vibration = rememberVibration(hasPitch && activeString >= 0)
 
     BoxWithConstraints(modifier.fillMaxSize()) {
+        // Durante algunos pasos de layout (pantalla dividida, ventanas redimensionadas) el área puede
+        // medir 0 o no estar acotada: no hay nada que dibujar y la geometría daría NaN.
+        if (!maxWidth.isPositiveFinite() || !maxHeight.isPositiveFinite()) return@BoxWithConstraints
         val density = LocalDensity.current
         // En pantallas bajas la separación entre clavijas es menor que el botón: se achica el botón
         // (sin bajar de 40 dp para que siga siendo fácil de tocar) y, si aún no entra, la fila del
@@ -176,6 +180,8 @@ fun GuitarHeadstock(
         }
     }
 }
+
+private fun Dp.isPositiveFinite(): Boolean = value > 0f && value.isFinite()
 
 @Composable
 private fun rememberVibration(active: Boolean): State<Float> {
